@@ -1,0 +1,125 @@
+<!-- <?php
+  	require_once 'db.php';
+
+	// Вывод админа
+	$stmt = $pdo -> query('SELECT * FROM admin');
+  	$admins = $stmt -> fetchAll();
+?> -->
+
+<!DOCTYPE html>
+<html lang='ru'>
+
+<head>
+	<meta charset='UTF-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<title>SENDIT - поиск персонала и публикация вакансий</title>
+
+	<!-- SEO -->
+	<meta name='description' content='Работа со всей России'>
+	<meta name='keywords' content='Работа, Персонал, Вакансии, Профессия, Деньги'>
+	<meta name='author' content='thelabuzov'>
+	<meta name='copyright' content='Дмитрий Лабузов'>
+	<meta property='og:title' content='WORKFLOW - поиск персонала и публикация вакансий'>
+	<meta property='og:description' content='Работа со всей России'>
+	<meta property='og:site_name' content='WORKFLOW - поиск персонала и публикация вакансий'>
+	<meta name='twitter:site' content='thelabuzov'>
+	<meta name='twitter:title' content='WORKFLOW - поиск персонала и публикация вакансий'>
+	<meta name='twitter:description' content='Работа со всей России'>
+
+	<!-- Подключение внешних объектов -->
+  	<link rel='shortcut icon' href='images/favicon.ico' type='image/x-icon'>
+	<link rel='stylesheet' href='styles/style.css'>
+</head>
+
+<body>
+	<!-- Загрузка страницы -->
+	<div class='loader'>
+		<svg width='200' height='200' viewBox='0 0 100 100'>
+			<polyline class='line' points='0,0 100,0 100,100' stroke-width='10' fill='none'></polyline>
+			<polyline class='line' points='0,0 0,100 100,100' stroke-width='10' fill='none'></polyline>
+			<polyline class='line line__animation' points='0,0 100,0 100,100' stroke-width='10' fill='none'></polyline>
+			<polyline class='line line__animation' points='0,0 0,100 100,100' stroke-width='10' fill='none'></polyline>
+		</svg>
+	</div>
+
+	<!-- Условие для гостя -->
+	<?php
+		if(($_COOKIE['account'] ?? '') === ''):
+	?>
+
+	<!-- Условие для пользователя -->
+	<?php else: ?>
+		<!-- Выравнивание кнопки пользователя -->
+		<style>
+			.account {
+				display: inline-flex;
+				align-items: center;
+				position: absolute;
+				right: 0;
+				z-index: 2;
+				font-weight: 700;
+				margin-right: 25px;
+				padding: 30px 0;
+				cursor: pointer;
+			}
+
+			@media (max-width: 50.85em) {
+				.logo {
+					position: absolute;
+					left: 0;
+				}
+
+				.menu input {
+					margin-top: 6rem;
+					width: 100%;
+				}
+			}
+		</style>
+
+		<!-- Кнопка пользователя -->
+		<div class='account__outer container'>
+			<a class='account' href='index.html'>Выход</a>
+		</div>
+	<?php endif ?>
+
+	<!-- Шапка -->
+	<header class='header__outer header'>
+		<div class='menu'>
+			<div class='header__inner container'>
+				<a class='logo' href='#'>
+					<img src='images/logo.svg' alt='logo' loading='lazy'>
+					SendIt
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main class='main'>
+		<div class='container'>
+			<div class='main__inner'>
+				<h2>Отправка сообщения</h2>
+
+				<form class='form' action='#' method='post'>
+					<textarea name='message' id='message' placeholder='Введите сообщение' required></textarea>
+					<div class='form__inner'>
+						<div class='form__tel'>
+							<input type='tel' placeholder='Введите номер телефона' id='input' onkeyup='filterList()'>
+							<button type='submit' class='btn'>Добавить номер</button>
+						</div>
+
+						<button type='submit' class='btn'>Отправить сообщение</button>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+	</main>
+
+	<footer>© 2023 SENDIT. Все права защищены.</footer>
+
+	<!-- Скрипты -->
+	<script src='scripts/script.js'></script>
+</body>
+
+</html>
