@@ -31,4 +31,4 @@ function animate() {
         renderer.render(scene, camera);
 }
 
-scene.add(object), object.position.set(2, 0.5, 0), (camera.position.z = 4), animate();
+scene.add(object), object.position.set(2, -.4, 0), (camera.position.z = 4), animate();

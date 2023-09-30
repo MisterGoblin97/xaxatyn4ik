@@ -25,17 +25,14 @@ html:has(.loader--hidden) {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font);
   color: var(--black);
+  min-height: 100vh;
+  min-width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-}
-
-body canvas {
-  position: absolute;
-  top: 12.5rem;
-  right: 0;
 }
 
 body .overlay {
@@ -268,11 +265,6 @@ input[type=submit]:hover img {
   justify-content: space-between;
 }
 
-.hero,
-.main {
-  flex-grow: 1;
-}
-
 .hero {
   background-color: var(--black);
   color: var(--white);
@@ -288,13 +280,12 @@ input[type=submit]:hover img {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  flex-grow: 1;
+  min-height: 100%;
 }
 
-.main {
-  margin-top: 2rem;
+.form__outer {
+  margin-top: 6rem;
 }
 
 .form {
@@ -321,8 +312,11 @@ main {
 
 footer {
   text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
+  margin: 4rem 1rem 1rem;
+}
+
+canvas {
+  position: absolute;
 }
 
 @keyframes loading {
@@ -368,6 +362,7 @@ footer {
 
   .hero__inner {
     margin: 0 auto;
+    padding: 0;
   }
 
   .hero {
@@ -376,9 +371,6 @@ footer {
 }
 
 @media (max-width:50.85em) {
-  body {
-    overflow-y: visible;
-  }
 
   body .popup {
     max-width: 18rem;
