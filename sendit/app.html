@@ -83,44 +83,41 @@
 		</div>
 	<?php endif ?>
 
-	<!-- Шапка -->
-	<header class='header__outer header'>
-		<div class='menu'>
-			<div class='header__inner container'>
-				<a class='logo' href='#'>
-					<img src='images/logo.svg' alt='logo' loading='lazy'>
-					SendIt
-				</a>
-			</div>
-		</div>
-	</header>
-
 	<main>
-		<section class='main'>
+		<!-- Шапка -->
+		<header class='header__outer header'>
+			<div class='menu'>
+				<div class='header__inner container'>
+					<a class='logo' href='#'>
+						<img src='images/logo.svg' alt='logo' loading='lazy'>
+						SendIt
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<section class='form__outer'>
 			<div class='container'>
 				<div class='main__inner'>
 					<h2>Отправка сообщения</h2>
-	
+
 					<form class='form' action='#' method='post'>
 						<textarea name='message' id='message' placeholder='Введите сообщение *' required></textarea>
 						<div class='form__inner'>
 							<div class='form__tel'>
-								<input type='tel' placeholder='Введите номер телефона *' id='input' onkeyup='filterList()'>
-								<button type='submit' class='btn'>Добавить номер</button>
-							</div>
-	
-							<button type='submit' class='btn'>Отправить сообщение</button>
+							<input type='tel' placeholder='Введите номер телефона *' name='tel' id='tel' onkeyup='filterList()'>
+							<button type='submit' class='btn'>Добавить номер</button>
 						</div>
+
+						<button type='submit' class='btn'>Отправить сообщение</button>
 					</form>
-				</div>
 				</div>
 			</div>
 		</section>
-
 	</main>
 	
 	<footer>© 2023 SENDIT. Все права защищены.</footer>
-	<!-- Скрипты -->
+
 	<script src='scripts/script.js'></script>
 </body>
 
