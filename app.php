@@ -5,7 +5,7 @@
 	<meta charset='UTF-8'>
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-	<title>SENDIT - поиск персонала и публикация вакансий</title>
+	<title>SENDIT</title>
 
 	<!-- SEO -->
 	<meta name='description' content='Summit Hackathon'>
@@ -35,22 +35,14 @@
 		</svg>
 	</div>
 
-	<!-- Попап для авторизации -->
-	<div id='popup-login' class='overlay'>
-		<a class='cancel' href='#'></a>
-		<div class='popup'>
-			<a class='close' href='#'>&times;</a>
-
-			<div id='login'>
-				<h2>Авторизация</h2>
-				<form action="login.php" method="post">
-        			<input type="text" class="form-control" name="text" id="text" placeholder="Введите псевдоним *" required>
-        			<input type="password" class="form-control" name="password" id="password" placeholder="Введите пароль *" required>
-        			<button type="submit" class="btn">Авторизоваться</button>
-    			</form>
-			</div>
-		</div>
+	<!-- Кнопки пользователя -->
+	<div class='account__outer container'>
+		<a href="history.php" class ='history'>История </a>
+		<form action="logout.php">
+			<button class='account'>Выход</a>
+		</form>
 	</div>
+
 
 	<!-- Шапка -->
 	<header class='header__outer header'>
@@ -60,38 +52,61 @@
 					<img src='images/logo.svg' alt='logo' loading='lazy'>
 					SendIt
 				</a>
-
-				<a class='btn btn__account' href='index.php#popup-login'>Авторизоваться
-					<img src='images/account.svg' alt='account' loading='lazy'>
-				</a>
 			</div>
 		</div>
 	</header>
 
-	<!-- Заглавная секция -->
-	<section class='hero'>
+	<!-- Форма добавления в рассылку -->
+	<main class='main'>
 		<div class='container'>
-			<div class='hero__inner'>
-				<div>
-					<h1>Доставка SMS в 2 клика</h1>
-					<p>
-						Клиент сервиса для отправки сообщений по номерам телефона использующий технологию API. Разработан в рамках проекта SummIT Challenge
-					</p>
-				</div>
+			<div class='main__inner'>
+				<h2>Отправка сообщения</h2>
+		
+				<form class='form' action="process_data.php" method='post'>
+				<textarea name='message' id='message' placeholder='Введите сообщение *' required></textarea>
+				<div class='form__inner' id='phoneInputs'>
+					<div class="form_tel_phones" id="form_tel_phones">
+						<input class="input_tel_phones" type='tel' placeholder='Введите номер телефона *' name="phone[]" id='tel' onkeyup='filterList()'>
+					</div>
+					<div class="form_add_phone">
+						<button type='button' class='btn' onclick='addPhoneInput()'>Добавить поле номера</button>
+						<button type='button' class='btn' onclick='removePhoneInput()'>Удалить поле номера</button>
+					</div>
+					<div class="submit">
+						<button type='submit' class='btn'>Отправить сообщение</button>
+					</div>
+				</div>	
+		</form>
 			</div>
 		</div>
-
-		<!-- Волна для перехода -->
-		<div class='wave'>
-			<div class='wave__inner'></div>
-		</div>
-	</section>
+	</main>
 
 	<footer>© 2023 SENDIT. Все права защищены.</footer>
 
 	<!-- Скрипты -->
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
 	<script src='scripts/script.js'></script>
+	<script>
+		function addPhoneInput() {
+  			var container = document.getElementById("form_tel_phones");
+  			var inputs = container.querySelectorAll('input[type="tel"]');
+  			if (inputs.length < 5) {
+    			var newInput = document.createElement("input");
+    			newInput.type = "tel";
+    			newInput.className = "input_tel_phones";
+    			newInput.name = "phone[]";
+    			newInput.placeholder = "Введите номер телефона";
+    			container.appendChild(newInput);
+  			} else {
+    			alert("Вы достигли максимального количества инпутов (5).");
+  			}
+		}
+		function removePhoneInput() {
+  			var container = document.getElementById("form_tel_phones");
+  			var inputs = container.querySelectorAll('input[type="tel"]');
+  			if (inputs.length > 1) {
+    		container.removeChild(inputs[inputs.length - 1]);
+  			}
+		}
+	</script>
 </body>
-
 </html>
